@@ -33,6 +33,19 @@ public static class Conexion
     /// <summary>Crea una conexión nueva (sin abrir). Usar siempre dentro de un "using".</summary>
     public static SqlConnection Crear() => new SqlConnection(Cadena);
 
+    /// <summary>Prueba la conexión e imprime el resultado en la consola.</summary>
+    public static bool ProbarConexion()
+    {
+        if (!ProbarConexion(out string mensaje))
+        {
+            Console.Error.WriteLine(mensaje);
+            return false;
+        }
+
+        Console.WriteLine("Conexión exitosa");
+        return true;
+    }
+
     /// <summary>Intenta abrir la conexión y devuelve un mensaje con el resultado.</summary>
     public static bool ProbarConexion(out string mensaje)
     {
