@@ -147,7 +147,14 @@ GO
 -- Pruebas (las que dicen "debe fallar" deben dar error):
 -- DECLARE @id INT;
 -- EXEC dbo.sp_RegistrarViaje 'ABC-101','8-000-0001','2026-11-01','Panama','Colon',78500,78600,10.5,@id OUTPUT;
--- SELECT @id AS NuevoViaje;  SELECT Matricula, Km_actual FROM dbo.VEHICULO WHERE Matricula='ABC-101';
+-- SELECT @id AS NuevoViaje; SELECT Matricula, Km_actual FROM dbo.VEHICULO WHERE Matricula='ABC-101';
 -- EXEC dbo.sp_RegistrarViaje 'ABC-101','8-000-0001','2026-11-01','Panama','David',5000,4000,20,@id OUTPUT;   -- debe fallar
 -- EXEC dbo.sp_RegistrarViaje 'ZZ-0000','8-000-0001','2026-11-01','Panama','David',100,200,20,@id OUTPUT;     -- debe fallar
 -- EXEC dbo.sp_ActualizarEstadoVehiculo 'ABC-103','Activo';
+-- SELECT Matricula, Estado FROM dbo.VEHICULO WHERE Matricula = 'ABC-103';
+-- EXEC dbo.sp_ActualizarEstadoVehiculo 'ABC-101', 'Disponible'; -- debe fallar
+-- DECLARE @idMantenimiento INT;
+-- EXEC dbo.sp_RegistrarMantenimiento 'ABC-101', '2026-11-05', 'Limpieza', 'Lavado general', 25.00, 78700, @idMantenimiento OUTPUT; -- debe fallar
+-- EXEC dbo.sp_RegistrarViaje 'ABC-101', '8-00-0001', '2026-11-04', '', 'Colon', 78600, 78700, 15, @id OUTPUT; -- debe fallar
+-- EXEC dbo.sp_RegistrarMantenimiento 'ABC-101','2026-11-06', 'Correctivo', 'Cambio de frenos delanteros', 350.00, 78700, @idMantenimiento OUTPUT;
+-- SELECT * FROM dbo.MANTENIMIENTO WHERE COD_Mantenimiento = @idMantenimiento;
